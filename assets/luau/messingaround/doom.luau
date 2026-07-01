@@ -1,11 +1,22 @@
+task.spawn(function()
+    local Players = game:GetService("Players")
+    local TeleportCheck = false
+    Players.LocalPlayer.OnTeleport:Connect(function(State)
+	    if (not TeleportCheck) and queueteleport then
+		    TeleportCheck = true
+		    queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/gayloo/genassets/refs/heads/main/assets/luau/messingaround/doom.luau'))()")
+	    end
+    end)
+end)
+
 local LocalPlayer = game.Players.LocalPlayer
 local RunService = game:GetService("RunService")
 
 game:GetService("UserInputService")
 
-local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-local Humanoid = Character:WaitForChild("Humanoid")
+local v1 = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local HumanoidRootPart = v1:WaitForChild("HumanoidRootPart")
+local Humanoid = v1:WaitForChild("Humanoid")
 
 Humanoid.WalkSpeed = 29
 Humanoid.JumpPower = 40
