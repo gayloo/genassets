@@ -1,0 +1,30 @@
+local LocalPlayer = game.Players.LocalPlayer
+local RunService = game:GetService("RunService")
+
+game:GetService("UserInputService")
+
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+local Humanoid = Character:WaitForChild("Humanoid")
+
+Humanoid.WalkSpeed = 29
+Humanoid.JumpPower = 40
+Humanoid.AutoRotate = true
+
+local SlipperyMovement = Instance.new("BodyVelocity")
+
+SlipperyMovement.Velocity = Vector3.new(0, 0, 0)
+SlipperyMovement.MaxForce = Vector3.new(10000, 0, 10000)
+SlipperyMovement.P = 1250
+SlipperyMovement.Name = "SlipperyMovement"
+SlipperyMovement.Parent = HumanoidRootPart
+
+local v2 = Vector3.new(0, 0, 0)
+
+RunService.RenderStepped:Connect(function()
+	local MoveDirection = Humanoid.MoveDirection
+	local v1 = Vector3.new(MoveDirection.X, 0, MoveDirection.Z)
+
+	v2 = if v1.Magnitude > 0 then v2:Lerp(v1.Unit * 29, 0.5) else v2 * 0.8
+	SlipperyMovement.Velocity = Vector3.new(v2.X, 0, v2.Z)
+end)
