@@ -1,4 +1,3 @@
-pcall(function() getgenv().IY_LOADED = true end)
 if not game:IsLoaded() then game.Loaded:Wait() end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
@@ -16,7 +15,7 @@ task.spawn(function()
     Players.LocalPlayer.OnTeleport:Connect(function(State)
 	    if (not TeleportCheck) and queueteleport then
 		    TeleportCheck = true
-		    queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/gayloo/genassets/refs/heads/main/assets/luau/messingaround/doom4.luau'))()")
+		    queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/gayloo/genassets/refs/heads/main/assets/luau/messingaround/doom5.luau'))()")
 	    end
     end)
 end)
